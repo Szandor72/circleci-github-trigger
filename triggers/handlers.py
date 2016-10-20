@@ -28,9 +28,9 @@ def create_trigger_webhooks(sender, **kwargs):
         repo.create_hook(
             name = 'web',
             config = {
-                'url': setttings.WEBHOOK_URL,
+                'url': settings.WEBHOOK_URL,
                 'content_type': 'json',
-                'secret': settings.WEBHOOK_URL,
+                'secret': settings.WEBHOOK_SECRET,
             },
         )
 
