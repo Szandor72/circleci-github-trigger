@@ -34,9 +34,13 @@ def github_push_webhook(request):
     
     triggers = Trigger.objects.filter(repo_id = repo_id)
     
+    branch_ref = push.get('after')
+    if not branch_ref:
+        return HttpResponse('No branch found')
+
+    branch = branch_ref.replace('refs/heads/','')
     for trigger in triggers:
         # Check if the branch matches the trigger's branch regex 
-        branch = push['after'].replace('refs/heads/','')
         if re.findall(trigger.branch, branch): 
             # Trigger the build event
             event = TriggerEvent(
