@@ -30,7 +30,7 @@ def create_trigger_webhooks(sender, **kwargs):
             config = {
                 'url': settings.WEBHOOK_URL,
                 'content_type': 'json',
-                'secret': settings.WEBHOOK_SECRET,
+                'secret': settings.GITHUB_WEBHOOK_SECRET,
             },
         )
 
