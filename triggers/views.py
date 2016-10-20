@@ -15,7 +15,7 @@ def validate_github_webhook(request):
     signature = request.META.get('HTTP_X_HUB_SIGNATURE').split('=')[1]
     if type(key) == unicode:
         key = key.encode()
-    mac = hmac.new(key, msg=request.content, digestmod=sha1)
+    mac = hmac.new(key, msg=request.data, digestmod=sha1)
     if not compare_digest(mac.hexdigest(), signature):
         return False
     return True
@@ -26,7 +26,7 @@ def github_push_webhook(request):
     if not validate_github_webhook(request):
         return HttpResponseForbidden
 
-    push = json.loads(request.content)
+    push = json.loads(request.data)
     repo_id = push['repository']['id']
     
     triggers = Trigger.objects.filter(repo_id = repo_id)
