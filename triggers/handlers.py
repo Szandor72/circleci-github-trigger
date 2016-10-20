@@ -42,12 +42,9 @@ def trigger_circle_build(sender, **kwargs):
 
     event = kwargs['instance']
 
-    github = login(settings.GITHUB_USERNAME, settings.GITHUB_PASSWORD)
-    repo = github.repository_with_id(event.trigger.repo_id)
-
     api_url = 'https://circleci.com/api/v1.1/project/gh/{}/{}?circle-token={}'.format(
-        repo.owner.login,
-        repo.name,
+        event.trigger.github_owner,
+        event.trigger.github_repo,
         settings.CIRCLECI_TOKEN,
     )
 
