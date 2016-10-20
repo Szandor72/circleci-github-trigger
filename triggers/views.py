@@ -12,7 +12,7 @@ from triggers.models import TriggerEvent
 
 def validate_github_webhook(request):
     key = settings.GITHUB_WEBHOOK_SECRET
-    signature = request.headers.get('X-Hub-Signature').split('=')[1]
+    signature = request.META.get('HTTP_X_HUB_SIGNATURE').split('=')[1]
     if type(key) == unicode:
         key = key.encode()
     mac = hmac.new(key, msg=request.content, digestmod=sha1)
