@@ -34,11 +34,12 @@ def github_push_webhook(request):
     
     triggers = Trigger.objects.filter(repo_id = repo_id)
     
-    branch_ref = push.get('after')
+    branch_ref = push.get('ref')
     if not branch_ref:
         return HttpResponse('No branch found')
 
     branch = branch_ref.replace('refs/heads/','')
+
     for trigger in triggers:
         # Check if the branch matches the trigger's branch regex 
         if re.findall(trigger.branch, branch): 
