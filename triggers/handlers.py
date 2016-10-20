@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from github3 import login
 from triggers.models import Trigger
+from triggers.models import TriggerEvent
 
 @receiver(post_save, sender=Trigger)
 def create_trigger_webhooks(sender, **kwargs):
@@ -33,7 +34,7 @@ def create_trigger_webhooks(sender, **kwargs):
             },
         )
 
-@receiver(post_save, sender=TriggerEvent):
+@receiver(post_save, sender=TriggerEvent)
 def trigger_circle_build(sender, **kwargs):
     # Skip updates
     if not kwargs['created']:
