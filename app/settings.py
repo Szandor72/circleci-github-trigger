@@ -133,3 +133,14 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+GITHUB_USERNAME = os.environ.get('GITHUB_USERNAME')
+GITHUB_PASSWORD = os.environ.get('GITHUB_PASSWORD')
+GITHUB_WEBHOOK_SECRET = os.environ.get('GITHUB_WEBHOOK_SECRET')
+CIRCLECI_TOKEN = os.environ.get('CIRCLECI_TOKEN')
+HEROKU_APP_NAME = os.environ.get('HEROKU_APP_NAME')
+if HEROKU_APP_NAME:
+    BASE_URL = os.environ.get('BASE_URL', 'https://{}.herokuapp.com'.format(HEROKU_APP_NAME))
+else:
+    BASE_URL = os.environ.get('BASE_URL', 'http://localhost:8000')
+WEBHOOK_URL = '{}/webhooks/github/push'.format(BASE_URL)
