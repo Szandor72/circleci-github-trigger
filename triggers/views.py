@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from triggers.models import Trigger
 from triggers.models import TriggerEvent
 
@@ -18,6 +20,8 @@ def validate_github_webhook(request):
         return False
     return True
 
+@csrf_exempt
+@require_POST
 def github_push_webhook(request):
     if not validate_github_webhook(request):
         return HttpResponseForbidden
