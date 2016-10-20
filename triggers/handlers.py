@@ -19,7 +19,7 @@ def create_trigger_webhooks(sender, **kwargs):
 
     # Check if webhook exists for repo
     existing = False
-    for hook in repo.hooks():
+    for hook in repo.iter_hooks():
         if hook.config.get('url') == settings.WEBHOOK_URL and 'push' in hook.events:
             existing = True
 
