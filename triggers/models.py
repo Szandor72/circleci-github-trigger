@@ -8,6 +8,22 @@ class Trigger(models.Model):
     parallelism = models.IntegerField()
     branch = models.CharField(max_length=255)
 
+    @property
+    def github_owner(self):
+        self.repo_url.split('/')[3]
+
+    @property
+    def github_repo(self):
+        self.repo_url.split('/')[4]
+
+    def __unicode__(self):
+        return '({}x) {}/{} {}'.format(
+            self.parallelism,
+            self.github_owner,
+            self.github_repo,
+            self.branch,
+        )
+
 class TriggerEvent(models.Model):
     trigger = models.ForeignKey(Trigger, related_name='events')
     commit = models.CharField(max_length=64)

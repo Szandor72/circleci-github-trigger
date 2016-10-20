@@ -15,7 +15,7 @@ def create_trigger_webhooks(sender, **kwargs):
   
     # Initialize repo API 
     github = login(settings.GITHUB_USERNAME, settings.GITHUB_PASSWORD)
-    repo = github.repository_with_id(trigger.repo_id)
+    repo = github.repository(trigger.github_owner, trigger.github_repo)
 
     # Check if webhook exists for repo
     existing = False
