@@ -1,6 +1,9 @@
 import hmac
 import json
 import re
+
+from hashlib import sha1
+
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
@@ -16,7 +19,7 @@ def validate_github_webhook(request):
     if type(key) == unicode:
         key = key.encode()
     mac = hmac.new(key, msg=request.body, digestmod=sha1)
-    if not compare_digest(mac.hexdigest(), signature):
+    if not hmac.compare_digest(mac.hexdigest(), signature):
         return False
     return True
 
