@@ -10,11 +10,11 @@ class Trigger(models.Model):
 
     @property
     def github_owner(self):
-        self.repo_url.split('/')[3]
+        return self.repo_url.split('/')[3]
 
     @property
     def github_repo(self):
-        self.repo_url.split('/')[4]
+        return self.repo_url.split('/')[4]
 
     def __unicode__(self):
         return '({}x) {}/{} {}'.format(
