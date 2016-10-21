@@ -55,8 +55,6 @@ def trigger_circle_build(sender, **kwargs):
         'parallel': event.trigger.parallelism,
     }
 
-    print 'API_URL = {}'.format(api_url)
-    print 'DATA = {}'.format(data)
     response = requests.post(api_url, json=data)
 
     try:
