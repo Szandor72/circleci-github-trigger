@@ -13,12 +13,12 @@
       "value": ""
     },
     "GITHUB_PASSWORD": {
-      "description": "The Github password.  Can also be a Github application token which bypasses 2fa."
+      "description": "The Github password.  Can also be a Github application token which bypasses 2fa.",
       "value": ""
     },
     "CIRCLECI_TOKEN": {
       "description": "The Github Developer App ID used by the Contributor Tool to do Github OAuth2 logins.  Not needed if you are not using the Contributor Tool",
-      "value": "",
+      "value": ""
     },
     "GITHUB_WEBHOOK_SECRET": {
       "description": "The callback url configured for the Connected App, ex: https://your-app-name.herokuapp.com/mpinstaller/oauth/callback",
@@ -32,7 +32,7 @@
   "formation": {
     "web": {
       "quantity": 1
-    },
+    }
   },
   "scripts": {
     "postdeploy": "python manage.py migrate --noinput"
