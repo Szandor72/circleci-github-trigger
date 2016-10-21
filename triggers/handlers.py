@@ -52,10 +52,11 @@ def trigger_circle_build(sender, **kwargs):
 
     data = {
         'revision': event.commit,
-        'parallel': event.trigger.parallelism
+        'parallel': event.trigger.parallelism,
     }
 
-    print 'API_URL = {}'.format()
+    print 'API_URL = {}'.format(api_url)
+    print 'DATA = {}'.format(data)
     response = requests.post(api_url, json=data)
 
     try:
