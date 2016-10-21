@@ -58,7 +58,7 @@ def trigger_circle_build(sender, **kwargs):
     response = requests.post(api_url, json=data)
 
     try:
-        build_url = response.json['build_url']
+        build_url = response.json()['build_url']
         event.build_url = build_url
         event.save()
     except:
