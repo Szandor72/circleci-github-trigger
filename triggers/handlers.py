@@ -55,5 +55,5 @@ def trigger_circle_build(sender, **kwargs):
     }
 
     print 'API_URL = {}'.format(api_url)
-    response = requests.post(api_url, data)
+    response = requests.post(api_url, json=data)
     print response.content
