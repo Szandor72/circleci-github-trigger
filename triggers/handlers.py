@@ -43,7 +43,7 @@ def trigger_circle_build(sender, **kwargs):
 
     event = kwargs['instance']
 
-    api_url = 'https://circleci.com/api/v1.1/project/gh/{}/{}/tree/{}?circle-token={}'.format(
+    api_url = 'https://circleci.com/api/v1.1/project/github/{}/{}/tree/{}?circle-token={}'.format(
         event.trigger.github_owner,
         event.trigger.github_repo,
         settings.CIRCLECI_TOKEN,
