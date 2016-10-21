@@ -43,10 +43,11 @@ def trigger_circle_build(sender, **kwargs):
 
     event = kwargs['instance']
 
-    api_url = 'https://circleci.com/api/v1.1/project/gh/{}/{}?circle-token={}'.format(
+    api_url = 'https://circleci.com/api/v1.1/project/gh/{}/{}/tree/{}?circle-token={}'.format(
         event.trigger.github_owner,
         event.trigger.github_repo,
         settings.CIRCLECI_TOKEN,
+        event.branch,
     )
 
     data = {
@@ -54,6 +55,4 @@ def trigger_circle_build(sender, **kwargs):
         'parallel': event.trigger.parallelism
     }
 
-    print 'API_URL = {}'.format(api_url)
     response = requests.post(api_url, json=data)
-    print response.content

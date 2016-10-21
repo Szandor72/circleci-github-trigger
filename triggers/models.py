@@ -27,5 +27,7 @@ class Trigger(models.Model):
 class TriggerEvent(models.Model):
     trigger = models.ForeignKey(Trigger, related_name='events')
     commit = models.CharField(max_length=64)
+    branch = models.CharField(max_length=255)
+    build_url = models.URLField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

@@ -47,6 +47,7 @@ def github_push_webhook(request):
             event = TriggerEvent(
                 trigger = trigger,
                 commit = push['after'],
+                branch = branch,
             )
             event.save() 
 
