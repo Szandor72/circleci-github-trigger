@@ -17,7 +17,7 @@
       "value": ""
     },
     "CIRCLECI_TOKEN": {
-      "description": "The Github Developer App ID used by the Contributor Tool to do Github OAuth2 logins.  Not needed if you are not using the Contributor Tool",
+      "description": "The CircleCI API token to use when triggering builds.",
       "value": ""
     },
     "GITHUB_WEBHOOK_SECRET": {
