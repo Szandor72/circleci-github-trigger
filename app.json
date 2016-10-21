@@ -1,0 +1,42 @@
+{
+  "name": "CircleCI Github Trigger",
+  "description": "A Python/Django web app handle triggering CircleCI builds for certain branches in a Github repository with a custom parallelism",
+  "repository": "https://github.com/SalesforceFoundation/circleci-github-trigger",
+  "keywords": ["python", "django", "circleci", "github"],
+  "env": {
+    "DEBUG": {
+      "description": "Determine whether to show Django's debug messages on errors.  Do not set to True on a production site!!!",
+      "value": "False"
+    },
+    "GITHUB_USERNAME": {
+      "description": "The Github username used to create the webhooks on linked repositories",
+      "value": ""
+    },
+    "GITHUB_PASSWORD": {
+      "description": "The Github password.  Can also be a Github application token which bypasses 2fa."
+      "value": ""
+    },
+    "CIRCLECI_TOKEN": {
+      "description": "The Github Developer App ID used by the Contributor Tool to do Github OAuth2 logins.  Not needed if you are not using the Contributor Tool",
+      "value": "",
+    },
+    "GITHUB_WEBHOOK_SECRET": {
+      "description": "The callback url configured for the Connected App, ex: https://your-app-name.herokuapp.com/mpinstaller/oauth/callback",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "3"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    },
+  },
+  "scripts": {
+    "postdeploy": "python manage.py migrate --noinput"
+  },
+  "image": "heroku/python",
+  "buildpack": "heroku/python"
+}
