@@ -6,8 +6,8 @@ class Command(BaseCommand):
     help = 'Manually triggers a CircleCI build from the CLI'
 
     def add_arguments(self, parser):
-        parser.add_argument('owner', nargs='+', type=int)
-        parser.add_argument('repo', nargs='+', type=int)
+        parser.add_argument('owner', nargs='+', type=str)
+        parser.add_argument('repo', nargs='+', type=str)
         
         parser.add_argument(
             '--branch',
@@ -23,12 +23,11 @@ class Command(BaseCommand):
 
     def handle(self, owner, repo, **options):
         api_url = 'https://circleci.com/api/v1.1/project/github/{}/{}/tree/{}?circle-token={}'.format(
-            owner,
-            repo,
+            owner[0],
+            repo[0],
             options['branch'],
             settings.CIRCLECI_TOKEN,
         )
-
         data = {}
 
         response = requests.post(api_url, json=data)
