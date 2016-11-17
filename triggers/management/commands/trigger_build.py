@@ -2,7 +2,7 @@ import requests
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-class TriggerBuild(BaseCommand):
+class Command(BaseCommand):
     help = 'Manually triggers a CircleCI build from the CLI'
 
     def add_arguments(self, parser):
