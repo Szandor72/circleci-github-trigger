@@ -17,8 +17,10 @@ class Command(BaseCommand):
         )
         parser.add_argument(
             '--env',
-            dest = 'env',
-            help = 'Sets the environment variables for the build, ex: VAR1=value1,VAR2=value2',
+            action='append',
+            dest='env',
+            type=lambda kv: kv.split("="),
+            help = 'Sets the environment variables for the build, ex: --env VAR1=value1',
         )
 
     def handle(self, owner, repo, **options):
@@ -29,6 +31,8 @@ class Command(BaseCommand):
             settings.CIRCLECI_TOKEN,
         )
         data = {}
+        if 'env' in options:
+            data['build_parameters'] = dict(options['env'])
 
         response = requests.post(api_url, json=data)
     
