@@ -20,6 +20,10 @@
       "description": "The CircleCI API token to use when triggering builds.",
       "value": ""
     },
+    "HEROKU_APP_NAME": {
+      "description": "Name of the App. Find out if there's a native way.",
+      "value": ""
+    },
     "GITHUB_WEBHOOK_SECRET": {
       "description": "The callback url configured for the Connected App, ex: https://your-app-name.herokuapp.com/mpinstaller/oauth/callback",
       "generator": "secret"
